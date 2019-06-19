@@ -24,7 +24,7 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    fetch("http://localhost:5000/register", {
+    fetch("http://localhost:5000/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

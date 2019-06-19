@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import AuthUtils from "./AuthUtils";
 import { Link } from "react-router-dom";
-class Login extends Component {
+class Reset extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
-      password: "",
       errors: {}
     };
-    this.auth = new AuthUtils();
-  }
-  componentDidMount() {
-    if (this.auth.loggedIn()) {
-      console.log("loggedin");
-      this.props.history.replace("/");
-    }
   }
 
   onChange = e => {
@@ -24,22 +16,12 @@ class Login extends Component {
   onSubmit = e => {
     e.preventDefault();
     const userData = {
-      email: this.state.email,
-      password: this.state.password
+      email: this.state.email
     };
-    fetch("http://localhost:5000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    })
+    fetch("http://localhost:5000/api/forget?email=" + userData.email)
       .then(response => response.json())
       .then(data => {
-        console.log("loggedin");
-        this.auth.setToken(data.token);
-        this.props.handleStatus(true);
-        this.props.history.replace("/");
+        console.log(data);
       });
   };
   render() {
@@ -54,7 +36,7 @@ class Login extends Component {
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
-                <b>Login</b> below
+                <b>Reset</b> below
               </h4>
               <p className="grey-text text-darken-1">
                 Don't have an account? <Link to="/register">Register</Link>
@@ -71,16 +53,7 @@ class Login extends Component {
                 />
                 <label htmlFor="email">Email</label>
               </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                />
-                <label htmlFor="password">Password</label>
-              </div>
+
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
@@ -92,14 +65,20 @@ class Login extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Login
+                  Reset
                 </button>
               </div>
             </form>
+            <div>
+              <h3>
+                An E-Mail has been sent with the link and code to reset your
+                password!
+              </h3>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-export default Login;
+export default Reset;

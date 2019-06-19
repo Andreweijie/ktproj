@@ -22,7 +22,18 @@
   font-size: large;
 }
 
+.nav-bar {
+  display: flex;
+  background-color: black;
+  padding: 1em;
+  justify-content: flex-end;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

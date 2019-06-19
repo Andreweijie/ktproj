@@ -6,17 +6,15 @@ export default class AuthUtils extends Component {
     super();
     this.fetchData = this.fetchData.bind(this);
     this.login = this.login.bind(this);
-    this.getProfile = this.getProfile.bind(this);
   }
 
-  login = (email, password) => {
-    return this.fetchData("http://localhost:5000/api/login", {
+  login = async (email, password) => {
+    const res = await this.fetchData("http://localhost:5000/api/login", {
       method: "POST",
       body: JSON.stringify({ email, password })
-    }).then(res => {
-      this.setToken(res.token);
-      return Promise.resolve(res);
     });
+    this.setToken(res.token);
+    return Promise.resolve(res);
   };
 
   loggedIn = () => {
@@ -50,7 +48,7 @@ export default class AuthUtils extends Component {
   };
 
   getProfile = () => {
-    return decode(this.getToken()).user;
+    return decode(this.getToken()).user.name;
   };
 
   fetchData(url, options) {

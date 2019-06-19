@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import decode from "jwt-decode";
 import AuthUtils from "./AuthUtils";
 
 export default function withAuth(AuthComponent) {
@@ -11,11 +12,13 @@ export default function withAuth(AuthComponent) {
       };
     }
     componentDidMount() {
+      console.log("hi");
       if (!Auth.loggedIn()) {
         this.props.history.replace("/login");
       } else {
         try {
           const profile = Auth.getProfile();
+          console.log(decode(Auth.getToken()));
           this.setState({ user: profile }, () => {
             this.props.history.replace("/");
           });

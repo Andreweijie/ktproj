@@ -1,21 +1,21 @@
 const Validator = require("validator"),
   isEmpty = require("is-empty");
 
-module.exports = ValidateRegisterInput = userInput => {
+module.exports = ValidatePasswordInput = userInput => {
   //create errors object to store error messages
   let errors = {};
 
   //convert empty fields to an empty string so we can use validator on them
-  userInput.name = !isEmpty(userInput.name) ? userInput.name : "";
+  userInput.otp = !isEmpty(userInput.otp) ? userInput.otp : "";
   userInput.email = !isEmpty(userInput.email) ? userInput.email : "";
   userInput.password = !isEmpty(userInput.password) ? userInput.password : "";
   userInput.password2 = !isEmpty(userInput.password2)
     ? userInput.password2
     : "";
 
-  //check name
-  if (Validator.isEmpty(userInput.name)) {
-    errors.name = "Name field is required";
+  //check otp
+  if (Validator.isEmpty(userInput.otp)) {
+    errors.otp = "otp field is required";
   }
   //check email
   if (Validator.isEmpty(userInput.email)) {
