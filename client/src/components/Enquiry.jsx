@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
 
 class Register extends Component {
   constructor() {
@@ -75,23 +77,56 @@ class Register extends Component {
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
+                  value={this.state.subject}
+                  error={errors.subject}
+                  id="subject"
+                  type="text"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="subject">subject</label>
               </div>
-              <div className="input-field col s12">
+              <div className="input-field col s6">
                 <input
                   onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
+                  value={this.state.brand}
+                  error={errors.brand}
+                  id="brand"
+                  type="text"
                 />
-                <label htmlFor="password2">Confirm Password</label>
+                <label htmlFor="brand">brand</label>
               </div>
+              <div className="input-field col s6">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.model}
+                  error={errors.model}
+                  id="model"
+                  type="text"
+                />
+                <label htmlFor="model">model</label>
+              </div>
+
+              <TextField
+                id="outlined-multiline-static"
+                label="Symptoms"
+                multiline
+                rows="4"
+                defaultValue="Describe the sysmptoms here..."
+                margin="normal"
+                variant="outlined"
+                fullWidth
+              />
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file">
+                <Button variant="raised" component="span">
+                  Upload Images
+                </Button>
+              </label>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
